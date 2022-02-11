@@ -1,0 +1,83 @@
+  {% extends 'header.html' %} 
+  {% load static %}
+  {% block content %}
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">User Profile</h4>
+      </div>
+      <div class="card-content">
+        <div class="card-body">
+
+          <div class="card-text">
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          </div>
+
+          <form class="form">
+            <div class="form-body">
+              <h4 class="form-section mt-3"><i class="ft-eye"></i> About User</h4>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="userinput1" class="sr-only">Fist Name</label>
+                    <input type="text" id="userinput1" class="form-control" placeholder="Name" name="name">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="userinput2" class="sr-only">Last Name</label>
+                    <input type="text" id="userinput2" class="form-control" placeholder="Company" name="company">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="userinput3" class="sr-only">Username</label>
+                    <input type="text" id="userinput3" class="form-control" placeholder="Username" name="username">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="userinput4" class="sr-only">Nick Name</label>
+                    <input type="text" id="userinput4" class="form-control" placeholder="Nick Name" name="nickname">
+                  </div>
+                </div>
+              </div>
+
+              <h4 class="form-section mt-3"><i class="ft-mail"></i> Contact Info &amp; Bio</h4>
+
+              <div class="form-group">
+                <label for="userinput5" class="sr-only">Email</label>
+                <input class="form-control" type="email" placeholder="email" id="userinput5">
+              </div>
+
+              <div class="form-group">
+                <label for="userinput6" class="sr-only">Website</label>
+                <input class="form-control" type="url" placeholder="http://" id="userinput6">
+              </div>
+
+              <div class="form-group">
+                <label for="userinput8" class="sr-only">Bio</label>
+                <textarea id="userinput8" rows="5" class="form-control" name="bio" placeholder="Bio"></textarea>
+              </div>
+
+            </div>
+
+            <div class="form-actions right">
+              <button type="button" class="btn btn-raised btn-warning mr-1">
+                <i class="ft-x"></i> Cancel
+              </button>
+              <button type="button" class="btn btn-raised btn-primary">
+                <i class="ft-check"></i> Save
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</
+
+    {% endblock%}
