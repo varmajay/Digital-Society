@@ -9,7 +9,7 @@
     <meta name="description" content="Apex admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Apex admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Register Page </title>
+    <title>OTP Page</title>
     <link rel="apple-touch-icon" sizes="60x60" href="{% static 'app-assets/img/ico/apple-icon-60.png'%}">
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'app-assets/img/ico/apple-icon-76.png'%}">
     <link rel="apple-touch-icon" sizes="120x120" href="{% static 'app-assets/img/ico/apple-icon-120.png'%}">
@@ -43,57 +43,36 @@
       <div class="main-panel">
         <!-- BEGIN : Main Content-->
         <div class="main-content">
-          <div class="content-wrapper"><!--Registration Page Starts-->
-<section id="regestration">
-  <div class="container-fluid">
+          <div class="content-wrapper"><!--Lock Screen Starts-->
+<section id="lock-screen">
+  <div class="container-fluid forgot-password-bg">
     <div class="row full-height-vh m-0">
       <div class="col-12 d-flex align-items-center justify-content-center">
         <div class="card">
           <div class="card-content">
-            <div class="card-body register-img">
+            <div class="card-body lock-screen-img">
               <div class="row m-0">
-                <div class="col-lg-6 d-none d-lg-block py-2 text-center">
-                  <img src="{% static 'app-assets/img/gallery/register.png'%}" alt="" class="img-fluid mt-3 pl-3" width="400"
-                    height="230">
+                <div class="col-lg-6 d-lg-block d-none text-center">
+                  <img src="{% static 'app-assets/img/gallery/lock.png'%}" alt="" class="img-fluid" height="230" width="400">
                 </div>
-                <div class="col-lg-6 col-md-12 px-4 pt-3 bg-white">
-                  <h4 class="card-title mb-2">Create Account</h4>
-                  <p class="card-text mb-3">
-                    Fill the below form to create a new account.
-                  </p> 
+                <div class="col-lg-6 col-md-12 pt-3 px-4 bg-white">
+                  <h4 class="card-title mb-3">
+                  Enter Your OTP
+                  </h4>
+                  <form action="{% url 'otp'%}" method="POST">
+                  {% csrf_token %}
                   {% if msg %}
                   <p style="color: red;">{{msg}}</p>
-                  {% endif%}
-                  <form action="{% url 'register'%}" method="POST"> 
-                  {% csrf_token %}
-                  <input type="text" class="form-control mb-3" placeholder="Name" name="name" required />
-                  <input type="email" class="form-control mb-3" placeholder="Email" name="email" required/>
-                  <input type="text" class="form-control mb-3" placeholder="Phone" name="phone" required/>
-                  <input type="text" class="form-control mb-3" placeholder="Address" name="address"required/>
-                  <input type="password" class="form-control mb-3" placeholder="Password" name="password" required />
-                  <input type="password" class="form-control mb-3" placeholder="Confirm Password"  name="cpassword"required/>
-                  <input type="file" class="form-control mb-3" name="pic"/>
-                  
-                  <div class="custom-control custom-checkbox custom-control-inline mb-3">
-                    <input type="checkbox" id="customCheckboxInline1" name="customCheckboxInline1" class="custom-control-input"
-                      checked />
-                    <label class="custom-control-label" for="customCheckboxInline1">
-                      I accept the terms & conditions.
-                    </label>
-                  </div>
+                  {% endif %}
+                  <input type="text" class="form-control mb-3" placeholder="Enter your 4 Digit Number" name="cotp" />
+                  <br>
                   <div class="fg-actions d-flex justify-content-between">
-                    <div class="login-btn">
-                      <button class="btn btn-outline-primary">
-                        <a href="{% url 'login'%}" class="text-decoration-none">
-                          Back To Login
-                        </a>
-                      </button>
-                    </div>
+                    <input type="hidden" name="otp" value="{{otp}}" id="">
                     <div class="recover-pass">
-                      <button class="btn btn-primary" type="submit">
-                          Register
+                      <button class="btn btn-primary" type="submit" style="margin-left: 100px;">
+                      Verify
                       </button>
-                    </form>
+                    </form> 
                     </div>
                   </div>
                 </div>
@@ -105,7 +84,7 @@
     </div>
   </div>
 </section>
-<!--Registration Page Ends-->
+<!--Lock Screen Ends-->
 
           </div>
         </div>
