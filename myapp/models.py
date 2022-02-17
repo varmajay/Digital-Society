@@ -8,7 +8,7 @@ class Secretary(models.Model):
     phone=models.CharField(max_length=15)
     address=models.CharField(max_length=50)
     password=models.CharField(max_length=20)
-    pic=models.FileField(upload_to='profile',default='pic.png',null=True,blank=True)
+    pic=models.FileField(upload_to='profile',default='pofile.png')
     verify=models.BooleanField(default=False)
 
     def __str__(self):

@@ -1,7 +1,7 @@
-from dataclasses import dataclass
-from random import randrange
+
+from random import choices, randrange
 import re
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.core.mail import send_mail
@@ -11,7 +11,9 @@ from myapp.models import Secretary
 # Create your views here.
 
 def index(request):
-    return render(request,'index.html')
+    uid=Secretary.objects.get(email=request.session['email'])
+    
+    return render(request,'index.html',{'uid':uid})
 
 
 def login(request):
@@ -63,7 +65,6 @@ def register(request):
                         "phone":request.POST['phone'],
                         "address":request.POST['address'],
                         "password":request.POST['password'],
-                        "pic":request.POST['pic'],
                     }
                     return render(request,'otp.html',{'otp':otp})
                 return render(request,'register.html',{'msg':'Password must be same'})
@@ -80,7 +81,6 @@ def otp(request):
                 phone=data['phone'],
                 address=data['address'],
                 password=data['password'],
-                pic=data['pic'],
 
             )
             del data
@@ -89,4 +89,40 @@ def otp(request):
     return render(request,'otp.html')
 
 def profile(request):
-    return render(request,'profile.html')
+    uid=Secretary.objects.get(email=request.session['email'])
+    if request.method == 'POST':
+        uid.name = request.POST['name']
+        uid.email = request.POST['email']
+        uid.phone = request.POST['phone']
+        uid.address = request.POST['address']
+        if 'pic' in request.FILES:
+            uid.pic = request.FILES['pic']
+        uid.save()
+
+    return render(request,'profile.html',{'uid':uid})
+
+def forgot_password(request):
+    if request.method == 'POST':
+        try:
+            uid = Secretary.objects.get(email=request.POST['email'])
+            password = ''.join(choices('abcdefghijklmnopqrstuvwxyz0123456789',k=8))
+            subject = 'Reset Password'
+            message = f"""Hello {uid.name},
+            Your New Password  is {password}"""
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [request.POST['email'], ]
+            send_mail( subject, message, email_from, recipient_list )
+            uid.password = password
+            uid.save()
+            return JsonResponse({'msg':'New Password Is Sent On Your Register Email'})
+        except:
+            msg = 'Email Is Not Register,Please Register First'
+            return JsonResponse({'msg':msg})
+    return render(request,'forgot-password.html')
+
+def add_house(request):
+    return render(request,'add-house.html')
+
+
+def view_house(request):
+    return render(request,'view-house.html')

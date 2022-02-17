@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" class="loading">
   <!-- BEGIN : Head-->
@@ -61,200 +61,25 @@
             <ul id="main-menu-navigation" data-menu="menu-navigation" data-scroll-to-active="true" class="navigation navigation-main">
               <li><a href="{% url 'index'%}"><i class="ft-home"></i><span data-i18n="" >Dashboard</span><span class="tag badge badge-pill badge-danger float-right mr-1 mt-1"></span></a>
               </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-copy"></i><span data-i18n="" class="menu-title">Pages</span></a>
+              <li class=""><a href="{% url 'profile' %}"><i class="ft-user"></i><span data-i18n="" class="menu-title">Profile</span></a>
+              <li class="has-sub nav-item"><a href="#"><i class="ft-triangle"></i><span data-i18n="" class="menu-title">House</span></a>
                 <ul class="menu-content">
-                  <li><a href="{% url 'login' %}" class="menu-item">Login</a>
+                  <li><a href="{% url 'add-house'%}" class="menu-item">Add House</a>
                   </li>
-                  <li><a href="{% url 'register' %}" class="menu-item">Register</a>
+                  <li><a href="{% url 'view-house'%}" class="menu-item">View House</a>
                   </li>
-                  <li><a href="{% url 'profile' %}" class="menu-item">User Profile</a>
-                  </li>
-                </ul>
-              </li>
-
-              <li class=" nav-item"><a href="color-palette.html"><i class="ft-droplet"></i><span data-i18n="" class="menu-title">Color Palette</span></a>
-              </li>
-              <li class=" nav-item"><a href="inbox.html"><i class="ft-mail"></i><span data-i18n="" class="menu-title">Inbox</span></a>
-              </li>
-              <li class=" nav-item"><a href="chat.html"><i class="ft-message-square"></i><span data-i18n="" class="menu-title">Chat</span></a>
-              </li>
-              <li class=" nav-item"><a href="taskboard.html"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Task Board</span></a>
-              </li>
-              <li class=" nav-item"><a href="calendar.html"><i class="ft-calendar"></i><span data-i18n="" class="menu-title">Calendar</span></a>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-aperture"></i><span data-i18n="" class="menu-title">UI Kit</span></a>
-                <ul class="menu-content">
-                  <li><a href="grids.html" class="menu-item">Grid</a>
-                  </li>
-                  <li><a href="typography.html" class="menu-item">Typography</a>
-                  </li>
-                  <li><a href="syntax-highlighter.html" class="menu-item">Syntax Highlighter</a>
-                  </li>
-                  <li><a href="helper-classes.html" class="menu-item">Helper Classes</a>
-                  </li>
-                  <li><a href="text-utilities.html" class="menu-item">Text Utilities</a>
-                  </li>
-                  <li class="has-sub"><a href="#" class="menu-item">Icons</a>
-                    <ul class="menu-content">
-                      <li><a href="feather.html" class="menu-item">Feather Icon</a>
-                      </li>
-                      <li><a href="font-awesome.html" class="menu-item">Font Awesome Icon</a>
-                      </li>
-                      <li><a href="simple-line.html" class="menu-item">Simple Line Icon</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-box"></i><span data-i18n="" class="menu-title">Components</span></a>
-                <ul class="menu-content">
-                  <li class="has-sub"><a href="#" class="menu-item">Bootstrap</a>
-                    <ul class="menu-content">
-                      <li><a href="components-lists.html" class="menu-item">List</a>
-                      </li>
-                      <li><a href="components-buttons.html" class="menu-item">Buttons</a>
-                      </li>
-                      <li><a href="components-alerts.html" class="menu-item">Alerts</a>
-                      </li>
-                      <li><a href="components-badges.html" class="menu-item">Badges</a>
-                      </li>
-                      <li><a href="components-dropdowns.html" class="menu-item">Dropdowns</a>
-                      </li>
-                      <li><a href="components-media-objects.html" class="menu-item">Media Objects</a>
-                      </li>
-                      <li><a href="components-pagination.html" class="menu-item">Pagination</a>
-                      </li>
-                      <li><a href="components-progress.html" class="menu-item">Progress Bars</a>
-                      </li>
-                      <li><a href="components-modals.html" class="menu-item">Modals</a>
-                      </li>
-                      <li><a href="components-collapse.html" class="menu-item">Collapse</a>
-                      </li>
-                      <li><a href="components-accordion.html" class="menu-item">Accordion</a>
-                      </li>
-                      <li><a href="components-carousel.html" class="menu-item">Carousel</a>
-                      </li>
-                      <li><a href="components-datepicker.html" class="menu-item">Datepicker</a>
-                      </li>
-                      <li><a href="components-popover.html" class="menu-item">Popover</a>
-                      </li>
-                      <li><a href="components-tabs.html" class="menu-item">Tabs</a>
-                      </li>
-                      <li><a href="components-tooltip.html" class="menu-item">Tooltip</a>
-                      </li>
-                      <li><a href="components-spinner.html" class="menu-item">Spinner</a>
-                      </li>
-                      <li><a href="components-toast.html" class="menu-item">Toast</a>
-                      </li>
-                      <li><a href="components-radio-checkboxes.html" class="menu-item">Radio &amp; Checkboxes</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="has-sub"><a href="#" class="menu-item">Extra</a>
-                    <ul class="menu-content">
-                      <li><a href="sweet-alerts.html" class="menu-item">Sweet Alert</a>
-                      </li>
-                      <li><a href="toastr.html" class="menu-item">Toastr</a>
-                      </li>
-                      <li><a href="nouislider.html" class="menu-item">NoUI Slider</a>
-                      </li>
-                      <li><a href="upload.html" class="menu-item">Upload</a>
-                      </li>
-                      <li><a href="editor.html" class="menu-item">Editor</a>
-                      </li>
-                      <li><a href="dragndrop.html" class="menu-item">Drag and Drop</a>
-                      </li>
-                      <li><a href="tour.html" class="menu-item">Tour</a>
-                      </li>
-                      <li><a href="image-cropper.html" class="menu-item">Image Cropper</a>
-                      </li>
-                      <li><a href="tags-input.html" class="menu-item">Input Tag</a>
-                      </li>
-                      <li><a href="switch.html" class="menu-item">Switch</a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-edit"></i><span data-i18n="" class="menu-title">Forms</span></a>
-                <ul class="menu-content">
-                  <li class="has-sub"><a href="#" class="menu-item">Elements</a>
-                    <ul class="menu-content">
-                      <li><a href="inputs.html" class="menu-item">Inputs</a>
-                      </li>
-                      <li><a href="input-groups.html" class="menu-item">Input Groups</a>
-                      </li>
-                      <li><a href="input-grid.html" class="menu-item">Input Grid</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="has-sub"><a href="#" class="menu-item">Layouts</a>
-                    <ul class="menu-content">
-                      <li><a href="basic-forms.html" class="menu-item">Basic Forms</a>
-                      </li>
-                      <li><a href="horizontal-forms.html" class="menu-item">Horizontal Forms</a>
-                      </li>
-                      <li><a href="hidden-labels.html" class="menu-item">Hidden Labels</a>
-                      </li>
-                      <li><a href="form-actions.html" class="menu-item">Form Actions</a>
-                      </li>
-                      <li><a href="bordered-forms.html" class="menu-item">Bordered Forms</a>
-                      </li>
-                      <li><a href="striped-rows.html" class="menu-item">Striped Rows</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li><a href="validation-forms.html" class="menu-item">Validation</a>
-                  </li>
-                  <li><a href="wizard-forms.html" class="menu-item">Wizard</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-grid"></i><span data-i18n="" class="menu-title">Tables</span></a>
-                <ul class="menu-content">
-                  <li><a href="regular-table.html" class="menu-item">Regular</a>
-                  </li>
-                  <li><a href="extended-table.html" class="menu-item">Extended</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-layout"></i><span data-i18n="" class="menu-title">Data Tables</span></a>
-                <ul class="menu-content">
-                  <li><a href="dt-basic-initialization.html" class="menu-item">Basic Initialisation</a>
-                  </li>
-                  <li><a href="dt-advanced-initialization.html" class="menu-item">Advanced initialisation</a>
-                  </li>
-                  <li><a href="dt-styling.html" class="menu-item">Styling</a>
-                  </li>
-                  <li><a href="dt-data-sources.html" class="menu-item">Data Sources</a>
-                  </li>
-                  <li><a href="dt-api.html" class="menu-item">API</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-layers"></i><span data-i18n="" class="menu-title">Cards</span></a>
-                <ul class="menu-content">
-                  <li><a href="basic-cards.html" class="menu-item">Basic Cards</a>
-                  </li>
-                  <li><a href="advanced-cards.html" class="menu-item">Advanced Cards</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-map"></i><span data-i18n="" class="menu-title">Maps</span></a>
-                <ul class="menu-content">
-                  <li><a href="google-map.html" class="menu-item">Google Map</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-bar-chart-2"></i><span data-i18n="" class="menu-title">Charts</span></a>
-                <ul class="menu-content">
-                  <li><a href="chartjs.html" class="menu-item">ChartJs</a>
-                  </li>
-                  <li><a href="chartist.html" class="menu-item">Chartist</a>
-                  </li>
-                </ul>
               </li>
             </ul>
+            <li class="has-sub nav-item"><a href="#"><i class="ft-copy"></i><span data-i18n="" class="menu-title">Pages</span></a>
+              <ul class="menu-content">
+                <li><a href="{% url 'login'%}" class="menu-item">Login</a>
+                </li>
+                <li><a href="{% url 'register'%}" class="menu-item">Register</a>
+                </li>
+                <li><a href="{% url 'forgot-password'%}" class="menu-item">Forgot Password</a>
+                </li>
+              </ul>
+            </li>
           </div>
         </div>
         <!-- main menu content-->
@@ -285,7 +110,7 @@
                     <p class="d-none">fullscreen</p></a></li>
                 <li class="dropdown nav-item"><a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle"><i class="ft-user font-medium-3 blue-grey darken-4"></i>
                     <p class="d-none">User Settings</p></a>
-                  <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu text-left dropdown-menu-right"><a href="../../../html/html/ltr/user-profile-page.html" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
+                  <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu text-left dropdown-menu-right"><a href="{% url 'profile'%}" class="dropdown-item py-1"><i class="ft-edit mr-2"></i><span>Edit Profile</span></a>
                     <div class="dropdown-divider"></div><a href="{% url 'logout'%}" class="dropdown-item"><i class="ft-power mr-2"></i><span>Logout</span></a>
                   </div>
                 </li>
