@@ -12,5 +12,10 @@ urlpatterns = [
     path('forgot-password',views.forgot_password,name='forgot-password'),
     path('add-house',views.add_house,name='add-house'),
     path('view-house',views.view_house,name='view-house'),
+    path('house-edit/<int:pk>',views.house_edit,name='house-edit'),
+    path('house-delete/<int:pk>',views.house_delete,name='house-delete'),
+
+
+    path('create-member',views.create_member,name='create-member')
 
 ]

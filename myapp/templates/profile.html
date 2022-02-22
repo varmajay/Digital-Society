@@ -17,8 +17,8 @@
     margin: 0 0 1rem 0;
 }
 .account-settings .user-profile .user-avatar img {
-    width: 200px;
-    height: 280px;
+    width: 150px;
+    height: 200px;
     -webkit-border-radius: 200px;
     -moz-border-radius: 200px;
     border-radius: 200px;
@@ -54,7 +54,7 @@
     color: #bcd0f7;
 }
 </style>
-        <form action="{% url 'profile'%}" method="post">
+        <form action="{% url 'profile'%}" method="post" enctype="multipart/form-data">
          {% csrf_token%}
             <div class="container">
               <div class="row gutters">
@@ -112,10 +112,9 @@
                             <input type="file" class="form-control" id="pic" name="pic" value="{{uid.pic.url}}">
                           </div>
                         </div>
-                      
                       <div class="row gutters">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                          <div class="text-right"  style="padding-left: 300px;">
+                          <div class="text-right"  style="padding-left: 400px;">
                             <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
                             <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
                           </div>

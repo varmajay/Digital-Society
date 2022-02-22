@@ -1,12 +1,12 @@
-
+from django.http import JsonResponse
 from random import choices, randrange
 import re
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.core.mail import send_mail
-
-from myapp.models import Secretary
+from json import loads
+from myapp.models import *
 
 # Create your views here.
 
@@ -121,8 +121,66 @@ def forgot_password(request):
     return render(request,'forgot-password.html')
 
 def add_house(request):
+    if request.method == 'POST':
+        House.objects.create(
+            room_no = request.POST['room_no'],
+            image = request.FILES['image'],
+        )
+        msg="House is created Succesfully"
+        return render(request,'add-house.html',{'msg':msg})
     return render(request,'add-house.html')
 
 
 def view_house(request):
-    return render(request,'view-house.html')
+    uid = House.objects.all()
+
+    return render(request,'view-house.html',{'uid':uid})
+
+def house_edit(request,pk):
+    uid = House.objects.get(id=pk)
+    if request.method == 'POST':
+        uid.room_no = request.POST['room_no']
+        if 'image' in request.FILES:
+            uid.image = request.FILES['image']
+        uid.save()
+        msg = "Successfully Updated "
+        return render(request,'house-edit.html',{'msg':msg,'uid':uid})
+    return render(request,'house-edit.html',{'uid':uid})
+
+
+def house_delete(request,pk):
+    house = House.objects.get(id=pk)
+    house.delete()
+    return redirect('view-house')
+
+
+
+
+
+def create_member(request):
+    uid = House.objects.all()
+    if request.method == 'POST':
+        try:
+            Member.objects.get(email=request.POST['email'])
+            msg = 'Email Is Already Exists In Member'
+            return render(request,'create-member.html',{'msg':msg})
+        except:
+            password = ''.join(choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',k=8))
+            subject = 'welcome to Digital Society'
+            message = f"""Hello {request.POST['name']},
+            Your Username is  {request.POST['email']},
+            Your Password is {password} """
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [request.POST['email'], ]
+            send_mail( subject, message, email_from, recipient_list )
+            Member.objects.create(
+                house = request.POST['room_no'],
+                name = request.POST['name'],
+                email = request.POST['email'],
+                phone = request.POST['phone'],
+                password = password,
+                doc = request.POST['doc'],
+                doc_number = request.POST['doc_number'],
+                address = request.POST['address'],
+            )
+    return render(request,'create-member.html',{'uid':uid})
