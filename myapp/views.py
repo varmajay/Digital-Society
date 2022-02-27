@@ -16,6 +16,8 @@ def index(request):
     return render(request,'index.html',{'uid':uid})
 
 
+
+
 def login(request):
     try:
         uid=Secretary.objects.get(email=request.session['email'])
@@ -35,9 +37,11 @@ def login(request):
 
 
 
+
 def logout(request):
     del request.session['email']
     return redirect('login')
+
 
 
 
@@ -71,6 +75,10 @@ def register(request):
             return render(request,'register.html',{'msg':'Password must be Atleast 8 Character'})
     return render(request,'register.html')
 
+
+
+
+
 def otp(request):
     if request.method == 'POST':
         if request.POST['otp'] == request.POST['cotp']:
@@ -88,6 +96,10 @@ def otp(request):
         return render(request,'otp.html',{'msg':'Please Enter Valid OTP '})
     return render(request,'otp.html')
 
+
+
+
+
 def profile(request):
     uid=Secretary.objects.get(email=request.session['email'])
     if request.method == 'POST':
@@ -100,6 +112,10 @@ def profile(request):
         uid.save()
 
     return render(request,'profile.html',{'uid':uid})
+
+
+
+
 
 def forgot_password(request):
     if request.method == 'POST':
@@ -120,6 +136,9 @@ def forgot_password(request):
             return JsonResponse({'msg':msg})
     return render(request,'forgot-password.html')
 
+
+
+
 def add_house(request):
     if request.method == 'POST':
         House.objects.create(
@@ -131,10 +150,15 @@ def add_house(request):
     return render(request,'add-house.html')
 
 
+
+
+
 def view_house(request):
     uid = House.objects.all()
-
     return render(request,'view-house.html',{'uid':uid})
+
+
+
 
 def house_edit(request,pk):
     uid = House.objects.get(id=pk)
@@ -146,6 +170,8 @@ def house_edit(request,pk):
         msg = "Successfully Updated "
         return render(request,'house-edit.html',{'msg':msg,'uid':uid})
     return render(request,'house-edit.html',{'uid':uid})
+
+
 
 
 def house_delete(request,pk):
@@ -173,8 +199,9 @@ def create_member(request):
             email_from = settings.EMAIL_HOST_USER
             recipient_list = [request.POST['email'], ]
             send_mail( subject, message, email_from, recipient_list )
+            uid = House.objects.get(room_no=request.POST['room_no'])
             Member.objects.create(
-                house = request.POST['room_no'],
+                house = uid,
                 name = request.POST['name'],
                 email = request.POST['email'],
                 phone = request.POST['phone'],

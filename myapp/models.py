@@ -17,7 +17,7 @@ class Secretary(models.Model):
 
 
 class House(models.Model):
-    room_no = models.IntegerField()
+    room_no = models.IntegerField(unique=True)
     image=models.FileField(upload_to='house-image',blank=True,null=True)
 
     def __int__(self):
