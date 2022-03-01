@@ -1,0 +1,74 @@
+{% extends 'header.html'%}
+{% load static %}
+{% block content %}
+  <!-- BEGIN : Body-->
+  <body data-col="1-column" class=" 1-column  layout-dark layout-transparent bg-glass-1 blank-page">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="wrapper">
+      <div class="main-panel">
+        <!-- BEGIN : Main Content-->
+        <div class="main-content">
+          <div class="content-wrapper"><!--Registration Page Starts-->
+<section id="regestration">
+  <!-- <div class="container-fluid"> -->
+    <!-- <div class="row full-height-vh m-0"> -->
+      <!-- <div class="col-12 d-flex align-items-center justify-content-center"> -->
+      <form action="{% url 'edit-member' uid.id %}" method="POST">
+        {% csrf_token %}
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body register-img">
+              <div class="row m-0">
+                <div class="col-lg-6 d-none d-lg-block py-2 text-center">
+                  <img src="{% static 'app-assets/img/gallery/lock.png'%}" alt="" class="img-fluid mt-3 pl-3" width="400"
+                    height="230">
+                </div>
+                <div class="col-lg-6 col-md-12 px-4 pt-3 bg-white">
+                  <h4 class="card-title mb-2">Edit Member</h4>
+									<label for="basicSelect">House NO</label>
+                  <input type="text" class="form-control mb-3"  name="" id="" value="{{uid.house.room_no}}" disabled>
+                  <input type="text" class="form-control mb-3" placeholder="Name" name="name" value="{{uid.name}}"/>
+                  <input type="email" class="form-control mb-3" placeholder="Email" name="email" value="{{uid.email}}"/>
+                  <input type="text" class="form-control mb-3" placeholder="Phone" name="phone" value="{{uid.phone}}"/>
+                  <fieldset class="form-group">
+                    <label for="basicSelect">Document Type</label>
+                    <select class="form-control"  name="doc">
+                      <option value="aadhar">Aadhar Card</option>
+                      <option value="pan">Pan Card</option>
+                    </select>
+                  </fieldset>
+                  <input type="text" class="form-control mb-3" placeholder="Document Number" name="doc_number" value="{{uid.doc_number}}"/>
+                  <input type="text" class="form-control mb-3" placeholder="Address" name="address" value="{{uid.address}}" />
+                  
+                  <div class="fg-actions d-flex justify-content-between">
+                    
+                    <div class="recover-pass" style="padding-left: 130px;">
+                      <button class="btn btn-primary" type="submit">
+                        <a href="" class="text-decoration-none text-white">
+                          Update
+                        </a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+      <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
+</section>
+<!--Registration Page Ends-->
+
+          </div>
+        </div>
+        <!-- END : End Main Content-->
+      </div>
+    </div>
+<br>
+<br>
+<br>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+{% endblock %}

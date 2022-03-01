@@ -16,12 +16,18 @@ class Secretary(models.Model):
         return self.name +'@'+self.email 
 
 
+
+
 class House(models.Model):
     room_no = models.IntegerField(unique=True)
     image=models.FileField(upload_to='house-image',blank=True,null=True)
 
     def __int__(self):
         return self.room_no 
+
+
+
+
 
 class Member(models.Model):
     doc_choice = (('pan','PAN Card '), ('aadhar','AAdhar Card'))
@@ -41,3 +47,26 @@ class Member(models.Model):
     def __str__(self):
         return self.name+'@'+self.name
 
+
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)
+    contact_no = models.IntegerField( )
+
+
+    def __str__(self):
+        return self.name +'@'+self.email
+    
+
+
+
+
+class Gallery(models.Model):
+    name = models.CharField(max_length=30)
+    image = models.FileField(upload_to='Gallery-image')
+
+
+    def __str__(self):
+        return self.name

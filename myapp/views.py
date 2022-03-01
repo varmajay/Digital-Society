@@ -211,3 +211,80 @@ def create_member(request):
                 address = request.POST['address'],
             )
     return render(request,'create-member.html',{'uid':uid})
+
+
+
+
+def view_member(request):
+    uid = Member.objects.all()
+    return render(request,'view-member.html',{'uid':uid})
+
+
+
+def edit_member(request,pk):
+    uid =Member.objects.get(id=pk)
+    if request.method == 'POST':
+        uid.name = request.POST['name']
+        uid.email = request.POST['email']
+        uid.phone = request.POST['phone']
+        uid.doc = request.POST['doc']
+        uid.doc_number = request.POST['doc_number']
+        uid.address = request.POST['address']
+        uid.save()
+    return render(request,'edit-member.html',{'uid':uid})
+
+
+
+def delete_member(request,pk):
+    member = Member.objects.get(id=pk)
+    member.delete()
+    return redirect('view-member')
+
+
+
+
+def contact(request):
+    if request.method == 'POST':
+        Contact.objects.create(
+            name = request.POST['name'],
+            email = request.POST['email'],
+            contact_no = request.POST['contact_no']
+        )
+        msg ='Successfully Contact Added '
+        return render(request,'contact.html',{'msg':msg})
+    return render(request,'contact.html')
+
+
+
+def contact_view(request):
+    uid = Contact.objects.all()
+    return render(request,'contact-view.html',{'uid':uid})
+
+
+def contact_edit(request,pk):
+    uid = Contact.objects.get(id=pk)
+    if request.method == 'POST':
+        uid.name = request.POST['name']
+        uid.email = request.POST['email']
+        uid.contact_no = request.POST['contact_no']
+        uid.save()
+    return render(request,'contact-edit.html',{'uid':uid})
+
+
+
+def contact_delete(request,pk):
+    contact = Contact.objects.get(id=pk)
+    contact.delete()
+    return redirect('contact-view')
+
+
+
+
+def event_gallery(request):
+    return render(request,'event-gallery.html')
+
+
+
+
+def event_gallery_view(request):
+    return render(request,'event-gallery-view.html')

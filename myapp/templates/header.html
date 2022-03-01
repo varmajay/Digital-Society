@@ -63,7 +63,7 @@
               </li>
               <li class=""><a href="{% url 'profile' %}"><i class="ft-user-check"></i><span data-i18n="" class="menu-title">Profile</span></a>
               </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-triangle"></i><span data-i18n="" class="menu-title">House</span></a>
+              <li class="has-sub nav-item"><a href="#"><i class="ft-layers"></i><span data-i18n="" class="menu-title">House</span></a>
                 <ul class="menu-content">
                   <li><a href="{% url 'add-house'%}" class="menu-item">Add House</a>
                   </li>
@@ -75,7 +75,7 @@
                 <ul class="menu-content">
                   <li><a href="{% url 'create-member'%}" class="menu-item">Create Member</a>
                   </li>
-                  <li><a href="" class="menu-item">View Member</a>
+                  <li><a href="{% url 'view-member'%}" class="menu-item">View Member</a>
                   </li>
                 </ul>
               </li>
@@ -89,19 +89,33 @@
                   </li>
                 </ul>
               </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-copy"></i><span data-i18n="" class="menu-title">Gallery Events</span></a>
+              <li class="has-sub nav-item"><a href="#"><i class="ft-file-text"></i><span data-i18n="" class="menu-title">Notice</span></a>
                 <ul class="menu-content">
-                  <li><a href="" class="menu-item">Add Gallery Event</a>
+                  <li><a href="" class="menu-item">Add Notice</a>
                   </li>
-                  <li><a href="" class="menu-item">View Gallery Event</a>
+                  <li><a href="" class="menu-item">View Notice</a>
                   </li>
                 </ul>
               </li>
-              <li class="has-sub nav-item"><a href="#"><i class="ft-copy"></i><span data-i18n="" class="menu-title">Contact</span></a>
+              <li class="has-sub nav-item"><a href="#"><i class="ft-image"></i><span data-i18n="" class="menu-title">Gallery Events</span></a>
                 <ul class="menu-content">
-                  <li><a href="{% url 'login'%}" class="menu-item">Login</a>
+                  <li><a href="{% url 'event-gallery'%}" class="menu-item">Add Gallery Event</a>
                   </li>
-                  <li><a href="{% url 'register'%}" class="menu-item">Register</a>
+                  <li><a href="{% url 'event-gallery-view'%}" class="menu-item">View Gallery Event</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-sub nav-item"><a href="#"><i class="icon-wallet"></i><span data-i18n="" class="menu-title">Payment</span></a>
+                <ul class="menu-content">
+                  <li><a href="" class="menu-item">Payment</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="has-sub nav-item"><a href="#"><i class="ft-phone-call"></i><span data-i18n="" class="menu-title">Contact</span></a>
+                <ul class="menu-content">
+                  <li><a href="{% url 'contact'%}" class="menu-item">Add Contact</a>
+                  </li>
+                  <li><a href="{%url 'contact-view'%}" class="menu-item">View Contact</a>
                   </li>
                 </ul>
               </li>
