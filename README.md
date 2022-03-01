@@ -1,3 +1,3 @@
 # Project title
 <hr>
-- The following porject is about digital society
+- The following project is about digital society
