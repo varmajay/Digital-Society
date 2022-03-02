@@ -19,7 +19,7 @@
       <div class="card">
         <div class="card-header">
           <div class="alert alert-info" role="alert">
-            <strong>Event Gallery</strong>
+            <strong> Edit Event Gallery</strong>
           </div>
         </div>
         {% if msg %}
@@ -33,20 +33,18 @@
                 <div class="row">
                   <div class="form-group col-12 mb-2">
                     <label for="eventInput1">Event Name</label>
-                    <input type="text" id="eventInput1" class="form-control" placeholder="name" name="name">
+                    <input type="text" id="eventInput1" class="form-control" placeholder="name" name="name" value="{{uid.name}}">
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="form-group col-12 mb-2">
                     <label for="eventInput2">Event Image </label>
+                    <img src="{{uid.image.url}}" alt="image" style="height: 50px;width: 50px;">
                     <input type="file" id="eventInput2" class="form-control" placeholder="title" name="image">
                   </div>
                 </div>
               <div class="form-actions center">
-                <button type="reset" class="btn btn-raised btn-warning mr-1">
-                  <i class="ft-x"></i> Reset
-                </button>
                 <button type="submit" class="btn btn-raised btn-primary">
                   <i class="fa fa-check-square-o"></i> Save
                 </button>

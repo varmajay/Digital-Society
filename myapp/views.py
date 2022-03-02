@@ -281,10 +281,36 @@ def contact_delete(request,pk):
 
 
 def event_gallery(request):
+    if request.method == 'POST':
+        Gallery.objects.create(
+            name = request.POST['name'],
+            image = request.FILES['image']
+        )
+        msg='Sucessfully Event Is Added '
+        return render(request,'event-gallery.html',{'msg':msg})
     return render(request,'event-gallery.html')
 
 
 
 
 def event_gallery_view(request):
-    return render(request,'event-gallery-view.html')
+    uid = Gallery.objects.all()
+    return render(request,'event-gallery-view.html',{'uid':uid})
+
+
+
+def event_gallery_edit(request,pk):
+    uid = Gallery.objects.get(id=pk)
+    if request.method == 'POST':
+        uid.name = request.POST['name']
+        if 'image' in request.FILES:
+            uid.image = request.FILES['image']
+        uid.save()
+    return render(request,'event-gallery-edit.html',{'uid':uid})
+
+
+
+def event_gallery_delete(request,pk):
+    gallery = Gallery.objects.get(id=pk)
+    gallery.delete()
+    return redirect('event-gallery-view')

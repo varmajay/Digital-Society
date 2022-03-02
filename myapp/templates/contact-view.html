@@ -1,6 +1,24 @@
 {% extends 'header.html'%}
 {% load static %}
 {% block content %}
+
+<style>
+  table {
+  counter-reset: 0;
+}
+
+table tr {
+  counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+  content: counter(rowNumber);
+  min-width: 1em;
+  margin-right: 0.5em;
+}
+</style>
+
+
       <div class="main-panel">
         <!-- BEGIN : Main Content-->
         <div class="main-content">
@@ -34,7 +52,7 @@
               <tbody>
                 {% for contact in uid %}
                 <tr>
-                  <th scope="row">1</th>
+                  <td></td>
                   <td>{{contact.name}}</td>
                   <td>{{contact.email}}</td>
                   <td>{{contact.contact_no}}</td>

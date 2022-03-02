@@ -65,7 +65,7 @@ class Contact(models.Model):
 
 class Gallery(models.Model):
     name = models.CharField(max_length=30)
-    image = models.FileField(upload_to='Gallery-image')
+    image = models.FileField(upload_to='Gallery-image', null=True ,blank=True)
 
 
     def __str__(self):
