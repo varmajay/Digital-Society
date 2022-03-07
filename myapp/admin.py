@@ -29,3 +29,9 @@ class AdminContact(admin.ModelAdmin):
 @admin.register(Gallery)
 class AdminGallery(admin.ModelAdmin):
     list_display = ['name','image']
+
+
+
+@admin.register(Notice)
+class AdminNotice(admin.ModelAdmin):
+    list_display = ['subject','date','notice']

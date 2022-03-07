@@ -26,5 +26,8 @@ urlpatterns = [
     path('event-gallery-view/',views.event_gallery_view,name='event-gallery-view'),
     path('event-gallery-edit/<int:pk>',views.event_gallery_edit,name='event-gallery-edit'),
     path('event-gallery-delete/<int:pk>',views.event_gallery_delete,name='event-gallery-delete'),
-
+    path('notice/',views.notice,name='notice'),
+    path('notice-view/',views.notice_view,name='notice-view'),
+    path('notice-edit/<int:pk>',views.notice_edit,name='notice-edit'),
+    path('notice-delete/<int:pk>',views.notice_delete,name='notice-delete'),
 ]

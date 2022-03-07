@@ -25,5 +25,6 @@ admin.site.index_title = "Welcome to Digital Society Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('myapp.urls')),
+    path('secretary/',include('myapp.urls')),
+    path('',include('member.urls'))
 ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

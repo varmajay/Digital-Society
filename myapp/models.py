@@ -70,3 +70,14 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+class Notice(models.Model):
+    subject = models.CharField(max_length=30)
+    date =models.DateField()
+    notice = models.TextField()
+
+
+    def __str__(self):
+        return self.subject

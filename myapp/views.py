@@ -314,3 +314,26 @@ def event_gallery_delete(request,pk):
     gallery = Gallery.objects.get(id=pk)
     gallery.delete()
     return redirect('event-gallery-view')
+
+
+
+
+def notice(request):
+    return render(request,'notice.html')
+
+
+
+def notice_view(request):
+    uid = Notice.objects.all()
+    return render(request,'notice-view.html',{'uid':uid})
+
+
+def notice_edit(request,pk):
+    uid = Notice.objects.get(id=pk)
+    return render(request,'notice-edit.html',{'uid':uid})
+
+
+def notice_delete(request,pk):
+    notice = Notice.objects.get(id=pk)
+    notice.delete()
+    return redirect('notice-view')
