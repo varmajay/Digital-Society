@@ -141,9 +141,13 @@ def forgot_password(request):
 
 def add_house(request):
     if request.method == 'POST':
+        image = request.FILES.get('image')
+        if not image:
+            msg = "Image is required"
+            return render(request, 'add-house.html', {'msg': msg})
         House.objects.create(
-            room_no = request.POST['room_no'],
-            image = request.FILES['image'],
+            room_no=request.POST['room_no'],
+            image=image,
         )
         msg="House is created Succesfully"
         return render(request,'add-house.html',{'msg':msg})
@@ -186,22 +190,19 @@ def house_delete(request,pk):
 def create_member(request):
     uid = House.objects.all()
     if request.method == 'POST':
+        if not request.POST.get('room_no'):
+            return render(request, 'create-member.html', {'uid': uid, 'msg': 'Please select a house'})
+        if not request.POST.get('name') or not request.POST.get('email'):
+            return render(request, 'create-member.html', {'uid': uid, 'msg': 'Name and Email are required'})
         try:
             Member.objects.get(email=request.POST['email'])
             msg = 'Email Is Already Exists In Member'
-            return render(request,'create-member.html',{'msg':msg})
+            return render(request,'create-member.html',{'uid': uid, 'msg':msg})
         except:
             password = ''.join(choices('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',k=8))
-            subject = 'welcome to Digital Society'
-            message = f"""Hello {request.POST['name']},
-            Your Username is  {request.POST['email']},
-            Your Password is {password} """
-            email_from = settings.EMAIL_HOST_USER
-            recipient_list = [request.POST['email'], ]
-            send_mail( subject, message, email_from, recipient_list )
-            uid = House.objects.get(room_no=request.POST['room_no'])
+            house = House.objects.get(room_no=request.POST['room_no'])
             Member.objects.create(
-                house = uid,
+                house = house,
                 name = request.POST['name'],
                 email = request.POST['email'],
                 phone = request.POST['phone'],
@@ -210,6 +211,18 @@ def create_member(request):
                 doc_number = request.POST['doc_number'],
                 address = request.POST['address'],
             )
+            subject = 'welcome to Digital Society'
+            message = f"""Hello {request.POST['name']},
+            Your Username is  {request.POST['email']},
+            Your Password is {password} """
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [request.POST['email']]
+            try:
+                send_mail(subject, message, email_from, recipient_list)
+                msg = 'Member created successfully and credentials were emailed'
+            except Exception:
+                msg = 'Member created, but email could not be sent. Please verify SMTP credentials and share login details manually.'
+            return render(request, 'create-member.html', {'uid': House.objects.all(), 'msg': msg})
     return render(request,'create-member.html',{'uid':uid})
 
 

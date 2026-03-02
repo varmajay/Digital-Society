@@ -1,5 +1,3 @@
-from operator import mod
-from pyexpat import model
 from django.db import models
 
 # Create your models here.
@@ -22,8 +20,8 @@ class House(models.Model):
     room_no = models.IntegerField(unique=True)
     image=models.FileField(upload_to='house-image',blank=True,null=True)
 
-    def __int__(self):
-        return self.room_no 
+    def __str__(self):
+        return str(self.room_no)
 
 
 
@@ -45,7 +43,7 @@ class Member(models.Model):
 
 
     def __str__(self):
-        return self.name+'@'+self.name
+        return self.name+'@'+self.email
 
 
 
