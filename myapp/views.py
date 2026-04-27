@@ -350,3 +350,7 @@ def notice_delete(request,pk):
     notice = Notice.objects.get(id=pk)
     notice.delete()
     return redirect('notice-view')
+
+
+def testing():
+    pass
