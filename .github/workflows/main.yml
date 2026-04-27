@@ -10,7 +10,7 @@ on:
 
 jobs:
   flake8-lint:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: Lint
     steps:
       - name: Check out source repository
