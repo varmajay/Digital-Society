@@ -1,44 +1,50 @@
-name: Self-hosted runner test
-
+name: WorkFlow
 on:
   push:
+    branches:
+      - '*'
   pull_request:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
-  test-self-hosted:
-    runs-on: self-hosted
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: Lint
     steps:
-      - name: Checkout repository
+      - name: Check out source repository
         uses: actions/checkout@v4
+      - name: Set up Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: flake8 Lint
+        uses: py-actions/flake8@v2
+        with:
+          ignore: "E121,E123,E126,E128,E303,E501,F401,F403,F405,W291,W391,W503,W504"
+          exclude: ".venv,__pycache__,migrations"
 
-      - name: Print system info and verify runner
-        shell: bash
+      - name: Search for while keyword
+        id: while_keyword
         run: |
-          echo "== System information =="
-          echo "OS: $(uname -s)"
-          echo "Kernel: $(uname -r)"
-          echo "Arch: $(uname -m)"
-          echo "User: $(whoami)"
-          if command -v nproc >/dev/null 2>&1; then
-            echo "CPU cores: $(nproc)"
-          elif command -v sysctl >/dev/null 2>&1; then
-            echo "CPU cores: $(sysctl -n hw.ncpu)"
+          if grep -r --include=\*.py --include=\*.js --include=\*.html -v \
+             -e '^\s*#' -e '^\s*//.*$' -e '"' -e "'" -e '^\s*\*' . |
+            perl -0777 -pe 's/<!--.*?-->//gs' |
+            perl -0777 -pe 's/\/\*.*?\*\///gs' |
+            perl -0777 -pe 's/\"""\.*?\"""\//gs' |
+            perl -0777 -pe "s/\'''\.*?\'''\//gs" |
+            grep -E '\bwhile\b'; then
+              echo "'while' keyword found!" >> error.log
           else
-            echo "CPU cores: (unknown)"
+              echo "No 'while' keyword found."
           fi
-          if command -v lscpu >/dev/null 2>&1; then
-            echo "CPU model: $(lscpu | awk -F: '/Model name/ {gsub(/^[ \t]+/, \"\", $2); print $2; exit}')"
-          elif command -v sysctl >/dev/null 2>&1; then
-            echo "CPU model: $(sysctl -n machdep.cpu.brand_string 2>/dev/null || true)"
+
+      - name: Check for errors
+        run: |
+          if [ -f error.log ]; then
+            cat error.log
+            exit 1
+          else
+            echo "No issues found."
           fi
-          if command -v sw_vers >/dev/null 2>&1; then
-            echo "macOS: $(sw_vers -productVersion)"
-          fi
-          echo
-          echo "== Repository =="
-          echo "Working directory: $(pwd)"
-          echo "Files:"
-          ls -la
-          echo
-          echo "Self-hosted runner is working"
