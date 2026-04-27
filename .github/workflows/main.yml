@@ -1,0 +1,44 @@
+name: Self-hosted runner test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-self-hosted:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print system info and verify runner
+        shell: bash
+        run: |
+          echo "== System information =="
+          echo "OS: $(uname -s)"
+          echo "Kernel: $(uname -r)"
+          echo "Arch: $(uname -m)"
+          echo "User: $(whoami)"
+          if command -v nproc >/dev/null 2>&1; then
+            echo "CPU cores: $(nproc)"
+          elif command -v sysctl >/dev/null 2>&1; then
+            echo "CPU cores: $(sysctl -n hw.ncpu)"
+          else
+            echo "CPU cores: (unknown)"
+          fi
+          if command -v lscpu >/dev/null 2>&1; then
+            echo "CPU model: $(lscpu | awk -F: '/Model name/ {gsub(/^[ \t]+/, \"\", $2); print $2; exit}')"
+          elif command -v sysctl >/dev/null 2>&1; then
+            echo "CPU model: $(sysctl -n machdep.cpu.brand_string 2>/dev/null || true)"
+          fi
+          if command -v sw_vers >/dev/null 2>&1; then
+            echo "macOS: $(sw_vers -productVersion)"
+          fi
+          echo
+          echo "== Repository =="
+          echo "Working directory: $(pwd)"
+          echo "Files:"
+          ls -la
+          echo
+          echo "Self-hosted runner is working"
